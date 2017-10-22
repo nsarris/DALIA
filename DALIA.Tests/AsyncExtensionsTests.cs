@@ -11,12 +11,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Moq;
 using System.Data.Common;
-using LinqToDB;
-using LinqToDB.Data;
-using LinqToDB.Mapping;
-using LinqToDB.SchemaProvider;
-using LinqToDB.SqlProvider;
 using System.Linq.Expressions;
+using LinqToDB.Mapping;
 
 namespace Dalia.Tests
 {

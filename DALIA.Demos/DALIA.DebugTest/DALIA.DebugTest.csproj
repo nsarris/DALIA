@@ -36,9 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="IBM.Data.DB2.iSeries">
       <HintPath>.\IBM.Data.DB2.iSeries.dll</HintPath>
     </Reference>
@@ -55,9 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs" />
-    <Compile Include="ICEDataContext.cs" />
-    <Compile Include="Mapper.cs" />
     <Compile Include="Northwind.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,23 +61,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DomainObjects\DomainObjects\DomainObjects.csproj">
-      <Project>{b46a1906-58d6-4559-851c-7f4f42553bb4}</Project>
-      <Name>DomainObjects</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Dynamix\Dynamix\Dynamix.csproj">
       <Project>{8cd44b0c-c50d-4328-8efd-9b0b4dd9bdd2}</Project>
       <Name>Dynamix</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DALIA.DomainObjects\DALIA.DomainObjects.csproj">
-      <Project>{25eafb65-27ff-44a5-acd2-8a06da6e290d}</Project>
-      <Name>DALIA.DomainObjects</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DALIA.LinqToDB\DALIA.LinqToDB.csproj">
+    <ProjectReference Include="..\..\DALIA.LinqToDB\DALIA.LinqToDB.csproj">
       <Project>{23805c24-d054-4b63-a504-dfa833fd19b1}</Project>
       <Name>DALIA.LinqToDB</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DALIA\DALIA.csproj">
+    <ProjectReference Include="..\..\DALIA\DALIA.csproj">
       <Project>{9d33baeb-4368-4ca5-84f7-67145fb3cd33}</Project>
       <Name>DALIA</Name>
     </ProjectReference>

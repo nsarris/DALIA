@@ -12,8 +12,7 @@ using DataModel.Northwind;
 using Dalia.Schema;
 using Dalia.Linq2db.Schema;
 using LinqToDB.Data;
-using Dalia.DomainObjects;
-//using LinqToDB;
+
 
 namespace DALIA.DebugTest
 {
@@ -76,13 +75,7 @@ namespace DALIA.DebugTest
             //context.Query<Customer>();
             //var context2 = new C2("SqlServer", "Server=.\\SQL2016;Database=Northwnd;Integrated Security=true");
             //context2.Query<Order>();
-            
-
-            //var ictx = new LinqToDBDataContext("DB2.iSeries", GetConnectionString());
-
-
-            //par.iDB2DbType = iDB2DbType.
-            //var r = ictx.Query<DataModel.ICE.QueryResultItem>().FirstOrDefaultAsync().Result;
+         
             //var r = context.Query<DataModel.Customer>().AllAsync(x => x.CustomerID != null).Result;
             //var r = context.Query<DataModel.Customer>().MaxAsync(x => x.Orders.Count()).Result;
             //context.exe
@@ -99,39 +92,10 @@ namespace DALIA.DebugTest
             var p = context.SchemaModel.GetKeyPredicate<DataModel.Northwind.Customer>(c);
 
             var c1 = context.Query<Customer>().FirstOrDefaultAsync(p).Result;
-
-
-            var config = new AutoMapper.MapperConfiguration(cfg => cfg.CreateMap<DataModel.Northwind.Customer, DomainModel.Customer>());
-            var mapper = config.CreateMapper();
-
-            var repo = new EntityQueryProvider<DataModel.Northwind.Customer, DomainModel.Customer>(context, new Mapper(mapper));
-            var c2 = repo.ToQueryable().FirstAsync().Result;
-            var c3 = repo.GetById("ALFKI");
-            var c4 = repo.GetByIdAsync("ALFKI").Result;
-
-            var q5 = repo.QueryById("ALFKI").Select(x => x.Address);
-            var sq5 = q5.ToString();
-            var c5 = q5.SingleOrDefault();
+            
         }
     }
 
 
 }
 
-namespace DomainModel
-{
-    public class Customer : DomainObjects.Core.DomainEntity
-    {
-        public string CustomerID { get; set; } // nchar(5)
-        public string CompanyName { get; set; } // nvarchar(40)
-        public string ContactName { get; set; } // nvarchar(30)
-        public string ContactTitle { get; set; } // nvarchar(30)
-        public string Address { get; set; } // nvarchar(60)
-        public string City { get; set; } // nvarchar(15)
-        public string Region { get; set; } // nvarchar(15)
-        public string PostalCode { get; set; } // nvarchar(10)
-        public string Country { get; set; } // nvarchar(15)
-        public string Phone { get; set; } // nvarchar(24)
-        public string Fax { get; set; } // nvarchar(24)
-    }
-}
