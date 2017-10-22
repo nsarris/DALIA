@@ -1,0 +1,3 @@
+[submodule "Subrepos/Dynamix"]
+	path = Subrepos/Dynamix
+	url = https://github.com/nsarris/Dynamix

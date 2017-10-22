@@ -71,7 +71,7 @@
       <Project>{9d33baeb-4368-4ca5-84f7-67145fb3cd33}</Project>
       <Name>DALIA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dynamix\Dynamix\Dynamix.csproj">
+    <ProjectReference Include="..\Subrepos\Dynamix\Dynamix\Dynamix.csproj">
       <Project>{8cd44b0c-c50d-4328-8efd-9b0b4dd9bdd2}</Project>
       <Name>Dynamix</Name>
     </ProjectReference>
