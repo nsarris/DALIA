@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILinqToDBDataContext.cs" />
     <Compile Include="LinqToDBDataContext.cs" />
     <Compile Include="LinqToDBTransactionWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
