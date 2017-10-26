@@ -197,4 +197,5 @@ namespace Dalia
             return changedValues.ContainsKey(propertyName);
         }
     }
+
 }

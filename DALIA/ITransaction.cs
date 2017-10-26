@@ -59,10 +59,7 @@ namespace Dalia
             transaction = Transaction;
         }
 
-        //~DbTransactionWrapper()
-        //{
-        //    Dispose();
-        //}
+        
 
         public void Commit()
         {

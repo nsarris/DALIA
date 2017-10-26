@@ -35,7 +35,6 @@ namespace Dalia
         List<List<Dynamix.DynamicType>> ExecuteDynamicMulti(string query, QueryParameters parameters = null);
         List<IDictionary<string, object>> ExecuteDictionary(string query, QueryParameters parameters = null);
 
-
         List<object> SelectFromQuery(Type Type, string query, QueryParameters parameters = null);
         List<T> SelectFromQuery<T>(string query, QueryParameters parameters = null) where T : class;
         T SelectById<T>(object id) where T : class;

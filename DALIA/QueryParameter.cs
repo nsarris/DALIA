@@ -75,16 +75,6 @@ namespace Dalia
             return q;
         }
 
-        //public static QueryParameters From(IEnumerable<(string, object)> tuples)
-        //{
-        //    var q = new QueryParameters();
-        //    foreach (var t in tuples)
-        //    {
-        //        q.Add(new QueryParameter(t.Item2, t.Item1));
-        //    }
-        //    q.HasNamedParameters = true;
-        //    return q;
-        //}
         public static QueryParameters FromTuples(IEnumerable<Tuple<string, object>> tuples)
         {
             var q = new QueryParameters();
@@ -140,6 +130,7 @@ namespace Dalia
                 q.Add(new QueryParameter(v, null));
             }
             //q.HasNamedParameters = false;
+
             return q;
         }
 

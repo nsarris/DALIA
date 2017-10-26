@@ -17,9 +17,14 @@ using Dynamix.QueryableExtensions;
 namespace Dalia.Linq2db
 {
 
-    public class LinqToDBDataContext<TDataConnection> : IDataContextAsync
+    public class LinqToDBDataContext<TDataConnection> : ILinqToDBDataContext<TDataConnection>
         where TDataConnection : LinqToDB.Data.DataConnection
     {
+        static LinqToDBDataContext()
+        {
+            LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
+        }
+
         LinqToDBTransactionWrapper transaction;
         TDataConnection connection;
         public static ConcurrentDictionary<Type, SchemaModel> schemaModels = new ConcurrentDictionary<Type, SchemaModel>();
@@ -390,7 +395,7 @@ namespace Dalia.Linq2db
         }
     }
 
-    public class LinqToDBDataContext : LinqToDBDataContext<LinqToDB.Data.DataConnection>
+    public class LinqToDBDataContext : LinqToDBDataContext<LinqToDB.Data.DataConnection>, ILinqToDBDataContext
     {
         public LinqToDBDataContext(IDataSource dataSource) : base(dataSource)
         {

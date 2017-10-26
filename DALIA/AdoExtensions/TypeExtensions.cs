@@ -58,6 +58,7 @@ namespace Dalia.AdoExtensions
                 //_typeToDbTypeMap[typeof(DateTimeOffset?)] = DbType.DateTimeOffset;
                 _typeToDbTypeMap[typeof(TimeSpan?)] = DbType.Time;
                 //typeMap[typeof(System.Data.Linq.Binary)] = DbType.Binary;
+
             }
 
             if (_dbTypeToTypeMap == null)

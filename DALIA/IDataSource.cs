@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Dalia
 {
 
-    public enum ProviderType
+    public enum ProviderTypes
     {
         SqlServer,
         DB2iSeries,
@@ -17,6 +17,7 @@ namespace Dalia
     {
         string ConnectionString { get; }
         string ProviderTypeString { get; }
-        ProviderType ProviderType { get; }
+        ProviderTypes ProviderType { get; }
     }
+
 }

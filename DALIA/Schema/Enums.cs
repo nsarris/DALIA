@@ -20,3 +20,4 @@ namespace Dalia.Schema
         Write = 2
     }
 }
+

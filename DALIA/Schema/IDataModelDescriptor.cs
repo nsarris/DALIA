@@ -21,3 +21,4 @@ namespace Dalia.Schema
         string NotSupportedReason { get; }
     }
 }
+

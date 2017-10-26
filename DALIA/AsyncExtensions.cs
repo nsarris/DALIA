@@ -1495,6 +1495,7 @@ namespace Dalia.AsyncExtensions
 
         #endregion
 
+
         #region SingleAsync<TSource>
 
         public static Task<TSource> SingleAsync<TSource>(

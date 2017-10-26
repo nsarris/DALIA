@@ -22,7 +22,6 @@ namespace Dalia
 
         static IEnumerable<Type> GetNonGenericSignature(IEnumerable<Type> parameterTypes, IEnumerable<Type> genericTypes)
         {
-            //return parameterTypes.SelectMany(p => p.IsGenericType ? new Type[] { p.GetGenericTypeDefinition() }.Concat(p.GetGenericArguments().Except(genericTypes).Where(x => !x.IsGenericParameter)) : new Type[] { p }).ToList();
             foreach (var p in parameterTypes)
             {
                 if (!p.IsGenericType)
