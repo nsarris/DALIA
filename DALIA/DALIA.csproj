@@ -52,10 +52,18 @@
     <Compile Include="AsyncExtensions.cs" />
     <Compile Include="DataSource.cs" />
     <Compile Include="Delta.cs" />
+    <Compile Include="DI\Deprecated\DataContextFactoryAttribute.cs" />
+    <Compile Include="DataSources.cs" />
+    <Compile Include="DI\DefaultDataSourceAttribute.cs" />
+    <Compile Include="DI\DefaultRepositoryAttribute.cs" />
+    <Compile Include="DI\IDataContextFactory.cs" />
+    <Compile Include="DI\IDbConnectionFactory.cs" />
+    <Compile Include="DI\IRepositoryFactory.cs" />
+    <Compile Include="DI\IUnityDaliaResolver.cs" />
     <Compile Include="IDataContext.cs" />
     <Compile Include="IDataSource.cs" />
     <Compile Include="Internal\DualKeyDictionary.cs" />
-    <Compile Include="IObjectMapper.cs" />
+    <Compile Include="Mapping\IObjectMapper.cs" />
     <Compile Include="IQueryableAsyncExecutor.cs" />
     <Compile Include="ITransaction.cs" />
     <Compile Include="LinqToDBQueryableAsyncExecutor.cs" />
@@ -65,6 +73,9 @@
     <Compile Include="Repositories\DtoQueryProvider.cs" />
     <Compile Include="Repositories\IDataModelQueryProvider.cs" />
     <Compile Include="Repositories\IDtoQueryProvider.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\MappedRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Schema\Enums.cs" />
     <Compile Include="Schema\IDataModelDescriptor.cs" />
     <Compile Include="Schema\IDataModelKeyProvider.cs" />
@@ -78,7 +89,7 @@
     <Compile Include="Schema\StaticColumnValue.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Dynamix\Dynamix\Dynamix.csproj">
+    <ProjectReference Include="..\Subrepos\Dynamix\Dynamix\Dynamix.csproj">
       <Project>{8cd44b0c-c50d-4328-8efd-9b0b4dd9bdd2}</Project>
       <Name>Dynamix</Name>
     </ProjectReference>

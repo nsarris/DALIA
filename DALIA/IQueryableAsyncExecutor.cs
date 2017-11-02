@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dalia
 {
-    public interface IQueryableAsyncExecutor
+    internal interface IQueryableAsyncExecutor
     {
         Task<bool> AllAsync<TSource>(IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken token = default(CancellationToken));
         Task<bool> AnyAsync<TSource>(IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken token = default(CancellationToken));

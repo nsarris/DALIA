@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamix", "Subrepos\Dynamix
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALIA.Tests", "DALIA.Tests\DALIA.Tests.csproj", "{99B99099-1DEB-455A-9C33-6BDAF003A438}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALIA.DI.Unity", "DALIA.DI.Unity\DALIA.DI.Unity.csproj", "{761FE9B1-01AA-456A-B641-69E6FFA2113E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALIA.LinqToDB.DI.Unity", "DALIA.LinqToDB.DI.Unity\DALIA.LinqToDB.DI.Unity.csproj", "{B22CFB35-9A8C-41DD-8C62-89B71E82412B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALIA.Mapping.AutoMapper", "DALIA.Mapping.AutoMapper\DALIA.Mapping.AutoMapper.csproj", "{2CB927B4-84A5-4486-B027-A6AA096C8AEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,18 @@ Global
 		{99B99099-1DEB-455A-9C33-6BDAF003A438}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99B99099-1DEB-455A-9C33-6BDAF003A438}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99B99099-1DEB-455A-9C33-6BDAF003A438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{761FE9B1-01AA-456A-B641-69E6FFA2113E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{761FE9B1-01AA-456A-B641-69E6FFA2113E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{761FE9B1-01AA-456A-B641-69E6FFA2113E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{761FE9B1-01AA-456A-B641-69E6FFA2113E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B22CFB35-9A8C-41DD-8C62-89B71E82412B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B22CFB35-9A8C-41DD-8C62-89B71E82412B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B22CFB35-9A8C-41DD-8C62-89B71E82412B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B22CFB35-9A8C-41DD-8C62-89B71E82412B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CB927B4-84A5-4486-B027-A6AA096C8AEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB927B4-84A5-4486-B027-A6AA096C8AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB927B4-84A5-4486-B027-A6AA096C8AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB927B4-84A5-4486-B027-A6AA096C8AEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

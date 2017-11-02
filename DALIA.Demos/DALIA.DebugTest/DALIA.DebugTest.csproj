@@ -36,23 +36,92 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IBM.Data.DB2.iSeries">
-      <HintPath>.\IBM.Data.DB2.iSeries.dll</HintPath>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="IBM.Data.DB2.iSeries, Version=12.0.0.0, Culture=neutral, PublicKeyToken=9cdb2ebfb1f93a26, processorArchitecture=MSIL" />
     <Reference Include="linq2db, Version=1.9.0.0, Culture=neutral, PublicKeyToken=f19f8aed7feff67e, processorArchitecture=MSIL">
-      <HintPath>packages\linq2db.1.9.0\lib\net45\linq2db.dll</HintPath>
+      <HintPath>..\..\..\..\packages\linq2db.1.9.0\lib\net45\linq2db.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AspNet.WebApi, Version=5.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\Unity.AspNet.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.0.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.0.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc, Version=5.0.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Unity.5.0.1\lib\net45\WebActivatorEx.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainModel.Customer.cs" />
+    <Compile Include="DataModel.Ice.Customer.cs" />
+    <Compile Include="CustomerRepository.cs" />
+    <Compile Include="ICEDataContext.cs" />
+    <Compile Include="Mapper.cs" />
     <Compile Include="Northwind.cs" />
+    <Compile Include="NorthWindDataContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,15 +130,39 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Dynamix\Dynamix\Dynamix.csproj">
+    <ProjectReference Include="..\..\..\Libraries\Dynamix\Dynamix.csproj">
       <Project>{8cd44b0c-c50d-4328-8efd-9b0b4dd9bdd2}</Project>
       <Name>Dynamix</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DALIA.LinqToDB\DALIA.LinqToDB.csproj">
+    <ProjectReference Include="..\..\..\Libraries\LinqToDB.DataProvider.DB2iSeries\LinqToDB.DataProvider.DB2iSeries.csproj">
+      <Project>{3E19DA8D-056C-4F05-B976-698498311FC2}</Project>
+      <Name>LinqToDB.DataProvider.DB2iSeries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Utilities\AutoMapperExtensions\AutoMapperExtensions.csproj">
+      <Project>{c0d58d74-b894-4bb7-bf5c-52b08676f73b}</Project>
+      <Name>AutoMapperExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DomainObjects\DomainObjects.csproj">
+      <Project>{b46a1906-58d6-4559-851c-7f4f42553bb4}</Project>
+      <Name>DomainObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DALIA.DI.Unity\DALIA.DI.Unity.csproj">
+      <Project>{761fe9b1-01aa-456a-b641-69e6ffa2113e}</Project>
+      <Name>DALIA.DI.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DALIA.DomainObjects\DALIA.DomainObjects.csproj">
+      <Project>{25eafb65-27ff-44a5-acd2-8a06da6e290d}</Project>
+      <Name>DALIA.DomainObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DALIA.LinqToDB.DI.Unity\DALIA.LinqToDB.DI.Unity.csproj">
+      <Project>{b22cfb35-9a8c-41dd-8c62-89b71e82412b}</Project>
+      <Name>DALIA.LinqToDB.DI.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DALIA.LinqToDB\DALIA.LinqToDB.csproj">
       <Project>{23805c24-d054-4b63-a504-dfa833fd19b1}</Project>
       <Name>DALIA.LinqToDB</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DALIA\DALIA.csproj">
+    <ProjectReference Include="..\DALIA\DALIA.csproj">
       <Project>{9d33baeb-4368-4ca5-84f7-67145fb3cd33}</Project>
       <Name>DALIA</Name>
     </ProjectReference>

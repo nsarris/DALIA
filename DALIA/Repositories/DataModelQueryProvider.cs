@@ -8,21 +8,21 @@ using Dynamix.QueryableExtensions;
 
 namespace Dalia.Repositories
 {
-    public class DataModelQueryProvider<T> : IDataModelQueryProvider<T>
+    public class DataModelQueryProvider<T> : IQueryProvider<T>
            where T : class
     {
-        protected IDataContextAsync Context { get; private set; }
-
+        public IDataContextAsync Context { get; private set; }
+        public bool OwnsContext { get; set; }
         public DataModelQueryProvider(IDataContextAsync context)
         {
             this.Context = context;
         }
 
-        public bool SupportsAsync => Context.SupportsAsync;
+        public virtual bool SupportsAsync => Context.SupportsAsync;
 
-        public bool SupportsQueryable => Context.SupportsQueryable;
+        public virtual bool SupportsQueryable => Context.SupportsQueryable;
 
-        public T GetById(object id)
+        public virtual T GetById(object id)
         {
             if (SupportsQueryable)
                 return Context.QueryById<T>(id).SingleOrDefault();
@@ -30,7 +30,7 @@ namespace Dalia.Repositories
                 return Context.SelectById<T>(id);
         }
 
-        public Task<T> GetByIdAsync(object id)
+        public virtual Task<T> GetByIdAsync(object id)
         {
             if (SupportsQueryable)
                 return Context.QueryById<T>(id).SingleOrDefaultAsync();
@@ -38,7 +38,7 @@ namespace Dalia.Repositories
                 return Context.SelectByIdAsync<T>(id);
         }
 
-        public IQueryable<T> ToQueryable()
+        public virtual IQueryable<T> ToQueryable()
         {
             if (!SupportsQueryable)
                 throw new NotImplementedException();
@@ -46,7 +46,7 @@ namespace Dalia.Repositories
                 return Context.Query<T>();
         }
 
-        public SingleQueryable<T> QueryById(object id)
+        public virtual SingleQueryable<T> QueryById(object id)
         {
             if (!SupportsQueryable)
                 throw new NotSupportedException();
@@ -54,9 +54,15 @@ namespace Dalia.Repositories
                 return Context
                     .QueryById<T>(id);
         }
+
+        public void Dispose()
+        {
+            if (OwnsContext)
+                Context.Dispose();
+        }
     }
 
-    public class DataModelQueryProvider<TDataModel, TKey> : DataModelQueryProvider<TDataModel>, IDataModelQueryProvider<TDataModel, TKey>
+    public class DataModelQueryProvider<TDataModel, TKey> : DataModelQueryProvider<TDataModel>, IQueryProvider<TDataModel, TKey>
         where TDataModel : class
     {
 
@@ -66,17 +72,17 @@ namespace Dalia.Repositories
 
         }
 
-        public TDataModel GetById(TKey id)
+        public virtual TDataModel GetById(TKey id)
         {
             return base.GetById(id);
         }
 
-        public Task<TDataModel> GetByIdAsync(TKey id)
+        public virtual Task<TDataModel> GetByIdAsync(TKey id)
         {
             return base.GetByIdAsync(id);
         }
 
-        public SingleQueryable<TDataModel> QueryById(TKey id)
+        public virtual SingleQueryable<TDataModel> QueryById(TKey id)
         {
             return base.QueryById(id);
         }

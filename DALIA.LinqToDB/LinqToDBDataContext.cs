@@ -13,12 +13,12 @@ using Dalia.AdoExtensions;
 using Dalia.Schema;
 using System.Collections.Concurrent;
 using Dynamix.QueryableExtensions;
+using LinqToDB.Data;
 
 namespace Dalia.Linq2db
 {
-
-    public class LinqToDBDataContext<TDataConnection> : ILinqToDBDataContext<TDataConnection>
-        where TDataConnection : LinqToDB.Data.DataConnection
+    public abstract class LinqToDBDataContext<TDataConnection> : ILinqToDBDataContext<TDataConnection>
+        where TDataConnection : LinqToDBDataConnection
     {
         static LinqToDBDataContext()
         {
@@ -96,7 +96,18 @@ namespace Dalia.Linq2db
 
         }
 
+        public LinqToDBDataContext(TDataConnection dataConnection)
+        {
+            Linq2DBDataConnection = dataConnection;
+        }
+
         public LinqToDBDataContext(string provider, string connectionString)
+        {
+            Linq2DBDataConnection = CreateConnection<TDataConnection>(provider, connectionString);
+        }
+
+        protected static T CreateConnection<T>(string provider, string connectionString)
+            where T : DataConnection
         {
             if (provider == "DB2.iSeries" || provider == "DB2iSeries")
             {
@@ -106,16 +117,16 @@ namespace Dalia.Linq2db
                 if (a == null)
                     a = AppDomain.CurrentDomain.Load("LinqToDB.DataProvider.DB2iSeries");
 
-                Linq2DBDataConnection = Activator.CreateInstance(typeof(TDataConnection),
+                return Activator.CreateInstance(typeof(T),
                     Activator.CreateInstance(a.GetType("LinqToDB.DataProvider.DB2iSeries.DB2iSeriesDataProvider")) as LinqToDB.DataProvider.IDataProvider,
                     connectionString
-                ) as TDataConnection;
+                ) as T;
             }
             else
-                Linq2DBDataConnection = Activator.CreateInstance(typeof(TDataConnection),
+                return Activator.CreateInstance(typeof(T),
                     provider,
                     connectionString
-                    ) as TDataConnection;
+                    ) as T;
         }
 
         public bool SupportsAsync => true;
@@ -128,7 +139,7 @@ namespace Dalia.Linq2db
 
         public bool TransactionState => transaction != null && transaction.Active;
 
-        
+        DataConnection ILinqToDBDataContext.Linq2DBDataConnection => Linq2DBDataConnection;
 
         public ITransaction BeginTransaction()
         {
@@ -150,11 +161,13 @@ namespace Dalia.Linq2db
 
         public void BulkInsert<T>(IEnumerable<T> obj) where T : class
         {
+            //Get Bulk insert from EF implementation : caution only supported on SqlServer
             throw new NotImplementedException();
         }
 
         public Task BulkInsertAsync<T>(IEnumerable<T> obj) where T : class
         {
+            //Get Bulk insert from EF implementation : caution only supported on SqlServer
             throw new NotImplementedException();
         }
 
@@ -162,47 +175,49 @@ namespace Dalia.Linq2db
 
         public void Delete<T>(T obj) where T : class
         {
-            throw new NotImplementedException();
+            Linq2DBDataConnection.Delete(obj);
         }
 
         public void Delete<T>(Expression<Func<T, bool>> predicate) where T : class
         {
-            throw new NotImplementedException();
+            Linq2DBDataConnection.GetTable<T>().Where(predicate).Delete();
         }
 
         public void Delete<T>(IEnumerable<T> objKeys) where T : class
         {
-            throw new NotImplementedException();
+            Linq2DBDataConnection.GetTable<T>().Where(SchemaModel.GetKeyPredicate(objKeys)).Delete();
         }
 
         public void Delete<T>(object parameters) where T : class
         {
-            throw new NotImplementedException();
+            var predicate = SchemaModel.GetKeyPredicateFromQueryParameters<T>(QueryParameters.InferFrom(parameters));
+            Linq2DBDataConnection.GetTable<T>().Where(predicate).Delete();
         }
 
         public Task DeleteAsync<T>(T obj) where T : class
         {
-            throw new NotImplementedException();
+            return Linq2DBDataConnection.DeleteAsync(obj);
         }
 
         public Task DeleteAsync<T>(Expression<Func<T, bool>> predicate) where T : class
         {
-            throw new NotImplementedException();
+            return Linq2DBDataConnection.GetTable<T>().Where(predicate).DeleteAsync();
         }
 
         public Task DeleteAsync<T>(IEnumerable<T> objKeys) where T : class
         {
-            throw new NotImplementedException();
+            return Linq2DBDataConnection.GetTable<T>().Where(SchemaModel.GetKeyPredicate(objKeys)).DeleteAsync();
         }
 
         public Task DeleteAsync<T>(object parameters) where T : class
         {
-            throw new NotImplementedException();
+            var predicate = SchemaModel.GetKeyPredicateFromQueryParameters<T>(QueryParameters.InferFrom(parameters));
+            return Linq2DBDataConnection.GetTable<T>().Where(predicate).DeleteAsync();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Linq2DBDataConnection.Dispose();
         }
 
         public List<DynamicType> ExecuteDynamic(string query, QueryParameters parameters = null)
@@ -265,21 +280,24 @@ namespace Dalia.Linq2db
 
         public void Insert<T>(T obj) where T : class
         {
-            throw new NotImplementedException();
+            Linq2DBDataConnection.Insert(obj);
         }
 
         public Task InsertAsync<T>(T obj) where T : class
         {
-            throw new NotImplementedException();
+            return Linq2DBDataConnection.InsertAsync(obj);
         }
 
         public void Load<T>(T obj, object parameters = null) where T : class
         {
+
+            //Reload to existing instance
             throw new NotImplementedException();
         }
 
         public Task LoadAsync<T>(T obj, object parameters = null) where T : class
         {
+            //Reload to existing instance
             throw new NotImplementedException();
         }
 
@@ -292,12 +310,12 @@ namespace Dalia.Linq2db
 
         public void Save<T>(T obj) where T : class
         {
-            throw new NotImplementedException();
+            Linq2DBDataConnection.InsertOrReplace(obj);
         }
 
         public Task SaveAsync<T>(T obj) where T : class
         {
-            throw new NotImplementedException();
+            return Linq2DBDataConnection.InsertOrReplaceAsync(obj);
         }
 
         public List<object> SelectFromQuery(Type type, string query, QueryParameters parameters = null)
@@ -322,22 +340,36 @@ namespace Dalia.Linq2db
 
         public void Update<T>(T objectKey, Delta<T> delta) where T : class
         {
-            throw new NotImplementedException();
+            var statement = Linq2DBDataConnection.GetTable<T>().Where(SchemaModel.GetKeyPredicate<T>(objectKey)).AsUpdatable();
+            foreach(var change in delta.GetChangedValues())
+            {
+                //statement.Set(
+                  //  Dynamix.Expressions.ExpressionBuilder.GetPropertySelector<T>(change.Key),)
+                  
+            }
+            statement.Update();
         }
 
         public void Update<T>(T obj) where T : class
         {
-            throw new NotImplementedException();
+            Linq2DBDataConnection.Update(obj);
         }
 
         public Task UpdateAsync<T>(T objectKey, Delta<T> delta) where T : class
         {
-            throw new NotImplementedException();
+            var statement = Linq2DBDataConnection.GetTable<T>().Where(SchemaModel.GetKeyPredicate<T>(objectKey)).AsUpdatable();
+            foreach (var change in delta.GetChangedValues())
+            {
+                //statement.Set(
+                //  Dynamix.Expressions.ExpressionBuilder.GetPropertySelector<T>(change.Key),)
+
+            }
+            return statement.UpdateAsync();
         }
 
         public Task UpdateAsync<T>(T obj) where T : class
         {
-            throw new NotImplementedException();
+            return Linq2DBDataConnection.UpdateAsync(obj);
         }
 
 
@@ -395,16 +427,7 @@ namespace Dalia.Linq2db
         }
     }
 
-    public class LinqToDBDataContext : LinqToDBDataContext<LinqToDB.Data.DataConnection>, ILinqToDBDataContext
-    {
-        public LinqToDBDataContext(IDataSource dataSource) : base(dataSource)
-        {
-        }
-
-        public LinqToDBDataContext(string provider, string connectionString) : base(provider, connectionString)
-        {
-        }
-    }
+    
 
 
 }

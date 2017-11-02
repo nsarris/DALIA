@@ -15,9 +15,12 @@ namespace Dalia
     }
     public interface IDataSource
     {
+        string Key { get; }
         string ConnectionString { get; }
         string ProviderTypeString { get; }
         ProviderTypes ProviderType { get; }
+        int Version { get; }
+        Type DbConnectionType { get; }
     }
 
 }

@@ -149,7 +149,7 @@ namespace Dalia.Tests
         //    }
         //}
 
-
+        #pragma warning disable CS1998
         [Test]
         public async Task Linq2dbAsyncTestAsync()
         {
@@ -254,6 +254,7 @@ namespace Dalia.Tests
             Assert.That(async () => { return await QueryableAsyncExtensions.ToListAsync(l); }, Throws.TypeOf<TestAsyncMethodsException>());
 
         }
+        #pragma warning restore CS1998
 
         class IntEqualityComparer : IEqualityComparer<int>
         {

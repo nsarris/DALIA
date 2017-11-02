@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LinqToDB.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Dalia.Linq2db
 {
-    public interface ILinqToDBDataContext<TDataConnection> : IDataContextAsync
-        where TDataConnection : LinqToDB.Data.DataConnection
+    public interface ILinqToDBDataContext : IDataContextAsync
     {
-        TDataConnection Linq2DBDataConnection { get; }
+        DataConnection Linq2DBDataConnection { get; }
     }
 
-    public interface ILinqToDBDataContext : ILinqToDBDataContext<LinqToDB.Data.DataConnection>
+    public interface ILinqToDBDataContext<TDataConnection> : ILinqToDBDataContext
+        where TDataConnection : DataConnection
     {
+        new TDataConnection Linq2DBDataConnection { get; }
     }
 }

@@ -7,10 +7,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-
+using Dalia;
 using LinqToDB;
 using LinqToDB.Common;
 using LinqToDB.Data;
@@ -25,7 +26,7 @@ namespace DataModel.Northwind
     /// Data Source    : .\SQL2016
     /// Server Version : 13.00.1742
     /// </summary>
-    public partial class NorthwndDB : LinqToDB.Data.DataConnection
+    public partial class NorthwndDB : Dalia.Linq2db.LinqToDBDataConnection
     {
         public ITable<AlphabeticalListOfProduct> AlphabeticalListOfProducts { get { return this.GetTable<AlphabeticalListOfProduct>(); } }
         public ITable<Category> Categories { get { return this.GetTable<Category>(); } }
@@ -58,23 +59,21 @@ namespace DataModel.Northwind
         public ITable<Supplier> Suppliers { get { return this.GetTable<Supplier>(); } }
         public ITable<Territory> Territories { get { return this.GetTable<Territory>(); } }
 
-        public NorthwndDB()
+        
+
+        public NorthwndDB(IDataSource dataSource) : base(dataSource)
         {
-            InitDataContext();
-        }
-        public NorthwndDB(string provider, string connectionString)
-            :base(provider,connectionString)
-        {
-            InitDataContext();
         }
 
-        public NorthwndDB(string configuration)
-            : base(configuration)
+        public NorthwndDB(IDataSource dataSource, DbConnection connection) : base(dataSource, connection)
         {
-            InitDataContext();
         }
 
-        partial void InitDataContext();
+        public NorthwndDB(string providerName, string connectionString) : base(providerName, connectionString)
+        {
+        }
+
+
 
         #region Table Functions
 

@@ -162,10 +162,4 @@ namespace Dalia
     {
 
     }
-
-    public interface IDataContextFactory
-    {
-        IDataContext Create<T>(IDataSource dataSource) where T : IDataContext;
-        IDataContext Create(Type dataContextType, IDataSource dataSource);// where T : IDataContext;
-    }
 }

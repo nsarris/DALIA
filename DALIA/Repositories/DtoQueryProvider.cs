@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dalia.AsyncExtensions;
 using Dynamix.QueryableExtensions;
+using Dalia.Mapping;
 
 namespace Dalia.Repositories
 {
@@ -12,8 +13,10 @@ namespace Dalia.Repositories
             where TDTO : class
             where TDataModel : class
     {
-        protected IDataContextAsync Context { get; private set; }
+        public IDataContextAsync Context { get; private set; }
         protected IObjectMapper Mapper { get; private set; }
+
+        public bool OwnsContext { get; set; }
 
         public DtoQueryProvider(IDataContextAsync context, IObjectMapper mapper)
         {
@@ -21,10 +24,12 @@ namespace Dalia.Repositories
             this.Mapper = mapper;
         }
 
-        public bool SupportsQueryable => Context.SupportsQueryable;
-        public bool SupportsAsync => Context.SupportsAsync;
+        public virtual bool SupportsQueryable => Context.SupportsQueryable;
+        public virtual bool SupportsAsync => Context.SupportsAsync;
 
-        public TDTO GetById(object id)
+        
+
+        public virtual TDTO GetById(object id)
         {
             if (SupportsQueryable)
                 return Context
@@ -36,7 +41,7 @@ namespace Dalia.Repositories
                     Context.SelectById<TDataModel>(id));
         }
 
-        public async Task<TDTO> GetByIdAsync(object id)
+        public virtual async Task<TDTO> GetByIdAsync(object id)
         {
             if (SupportsQueryable)
                 return await Context
@@ -48,7 +53,7 @@ namespace Dalia.Repositories
                     await Context.SelectByIdAsync<TDataModel>(id));
         }
 
-        public IQueryable<TDTO> ToQueryable()
+        public virtual IQueryable<TDTO> ToQueryable()
         {
             if (!SupportsQueryable)
                 throw new NotSupportedException();
@@ -58,7 +63,7 @@ namespace Dalia.Repositories
                     .Select(Mapper.GetMapExpression<TDataModel, TDTO>());
         }
 
-        public SingleQueryable<TDTO> QueryById(object id)
+        public virtual SingleQueryable<TDTO> QueryById(object id)
         {
             if (!SupportsQueryable)
                 throw new NotSupportedException();
@@ -67,9 +72,15 @@ namespace Dalia.Repositories
                     .QueryById<TDataModel>(id)
                     .Select(Mapper.GetMapExpression<TDataModel, TDTO>());
         }
+
+        public void Dispose()
+        {
+            if (OwnsContext)
+                Context.Dispose();
+        }
     }
 
-    public class DtoQueryProvider<TDataModel, TDTO, TDTOKey> : DtoQueryProvider<TDataModel, TDTO>, IDataModelQueryProvider<TDTO, TDTOKey>
+    public class DtoQueryProvider<TDataModel, TDTO, TDTOKey> : DtoQueryProvider<TDataModel, TDTO>, IQueryProvider<TDTO, TDTOKey>
         where TDTO : class
         where TDataModel : class
     {
@@ -80,17 +91,17 @@ namespace Dalia.Repositories
 
         }
 
-        public TDTO GetById(TDTOKey id)
+        public virtual TDTO GetById(TDTOKey id)
         {
             return base.GetById(id);
         }
 
-        public Task<TDTO> GetByIdAsync(TDTOKey id)
+        public virtual Task<TDTO> GetByIdAsync(TDTOKey id)
         {
             return base.GetByIdAsync(id);
         }
 
-        public SingleQueryable<TDTO> QueryById(TDTOKey id)
+        public virtual SingleQueryable<TDTO> QueryById(TDTOKey id)
         {
             return base.QueryById(id);
         }

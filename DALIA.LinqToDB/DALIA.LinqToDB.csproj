@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ILinqToDBDataContext.cs" />
+    <Compile Include="LinqToDBDataConnection.cs" />
     <Compile Include="LinqToDBDataContext.cs" />
     <Compile Include="LinqToDBTransactionWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,7 +68,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Dynamix\Dynamix\Dynamix.csproj">
+    <ProjectReference Include="..\Subrepos\Dynamix\Dynamix\Dynamix.csproj">
       <Project>{8cd44b0c-c50d-4328-8efd-9b0b4dd9bdd2}</Project>
       <Name>Dynamix</Name>
     </ProjectReference>
